@@ -30,9 +30,11 @@ public class CSVApp {
     public static void main(String[] args) {
 //        "1,John,Smith,USA,25"
 //        "2,Ivan,Petrov,RU,23"
-        String[] employees = "2,Ivan,Petrov,RU,23".split(",");
-        try (CSVWriter csvwriter = new CSVWriter(new FileWriter("data.csv", true))) {
-            csvwriter.writeNext(employees);
+        String[] employeeParameters1 = "1,John,Smith,USA,25".split(",");
+        String[] employeeParameters2 = "2,Ivan,Petrov,RU,23".split(",");
+        try (CSVWriter csvwriter = new CSVWriter(new FileWriter("data.csv", false))) {
+            csvwriter.writeNext(employeeParameters1);
+            csvwriter.writeNext(employeeParameters2);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -49,19 +51,20 @@ public class CSVApp {
 
             Element staff = document.createElement("staff");
             document.appendChild(staff);
-            Element employee = document.createElement("employee");
-            employee.setAttribute("id", "1");
-            employee.setAttribute("firstName", "John");
-            employee.setAttribute("lastName", "Smith");
-            employee.setAttribute("country", "USA");
-            employee.setAttribute("age", "25");
-            staff.appendChild(employee);
-            employee.setAttribute("id", "2");
-            employee.setAttribute("firstName", "Ivan");
-            employee.setAttribute("lastName", "Petrov");
-            employee.setAttribute("country", "RU");
-            employee.setAttribute("age", "23");
-            staff.appendChild(employee);
+            Element employee1 = document.createElement("employee");
+            employee1.setAttribute("id", "1");
+            employee1.setAttribute("firstName", "John");
+            employee1.setAttribute("lastName", "Smith");
+            employee1.setAttribute("country", "USA");
+            employee1.setAttribute("age", "25");
+            staff.appendChild(employee1);
+            Element employee2 = document.createElement("employee");
+            employee2.setAttribute("id", "2");
+            employee2.setAttribute("firstName", "Ivan");
+            employee2.setAttribute("lastName", "Petrov");
+            employee2.setAttribute("country", "RU");
+            employee2.setAttribute("age", "23");
+            staff.appendChild(employee2);
 
             DOMSource domSource = new DOMSource(document);
             StreamResult streamResult = new StreamResult(new File("data.xml"));
